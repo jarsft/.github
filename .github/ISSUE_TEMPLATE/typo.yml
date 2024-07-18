@@ -1,0 +1,39 @@
+name: Documentation Correction
+description: Fix a documentation error or correct a grammar issue within this project.
+body:
+    - type: markdown
+      attributes:
+          value: |
+              You're about to create a documentation correction within a Jarsoft repository.
+              The organization's [Code of Conduct](https://github.com/) & [Contributing Guide](https://github.com/) apply.
+    - type: dropdown
+      id: type
+      attributes:
+          label: Type of correction
+          description: Select whether this is a documentation correction or a simple grammar correction.
+          multiple: true
+          options:
+              - Documentation
+              - Grammar
+    - type: textarea
+      id: context
+      attributes:
+          label: Additional information
+          description: Feel free to provide additional information which may help resolve this issue.
+          placeholder: Additional information related to the issue...
+      validations:
+          required: false
+    - type: checkboxes
+      id: checkboxes
+      attributes:
+          label: Submission checklist
+          description: Before submitting the issue, please make sure you do the following
+          options:
+              - label: Follow the [Code of Conduct](https://github.com/)
+                required: true
+              - label: Read the [Contribution Guide](https://github.com/)
+                required: true
+              - label: Check that no issue that reports the same correction exists.
+                required: true
+              - label: Check that no other elements other than the documentation were modified.
+                required: true
