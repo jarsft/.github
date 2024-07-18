@@ -4,7 +4,7 @@
 
     Before submitting the PR, please make sure you have done the following:
 
-    - Read the [Contributing Guide](https://github.com/).
+    - Read the [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md).
     - Checked that a PR that solves this issue the same way does not already exist (i.e. no duplicates exist).
     - Provided a clear, concise description that addresses **what** issue the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
 -->

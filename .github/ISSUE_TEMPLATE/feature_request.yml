@@ -5,7 +5,7 @@ body:
       attributes:
           value: |
               You're about to create a feature request within a Jarsoft repository.
-              The organization's [Code of Conduct](https://github.com/) & [Contributing Guide](https://github.com/) apply.
+              The organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) apply.
     - type: textarea
       id: description
       attributes:
@@ -36,9 +36,9 @@ body:
           label: Submission checklist
           description: Before submitting the feature request, please make sure you do the following
           options:
-              - label: Follow the [Code of Conduct](https://github.com/)
+              - label: Follow the [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md)
                 required: true
-              - label: Read the [Contribution Guide](https://github.com/)
+              - label: Read the [Contribution Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md)
                 required: true
               - label: Check that no issue that requests the same feature exists.
                 required: true

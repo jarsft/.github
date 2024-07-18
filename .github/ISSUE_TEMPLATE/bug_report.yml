@@ -5,7 +5,7 @@ body:
       attributes:
           value: |
               You're about to create a bug report within a Jarsoft repository.
-              The organization's [Code of Conduct](https://github.com/) & [Contributing Guide](https://github.com/) apply.
+              The organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) apply.
     - type: textarea
       id: description
       attributes:
@@ -47,15 +47,15 @@ body:
           label: Submission checklist
           description: Before submitting the issue, please make sure you do the following
           options:
-              - label: Follow the [Code of Conduct](https://github.com/)
+              - label: Follow the [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md)
                 required: true
-              - label: Read the [Contribution Guide](https://github.com/)
+              - label: Read the [Contribution Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md)
                 required: true
               - label: Check that no issue that reports the same bug exists.
                 required: true
               - label: Check that this is a concrete bug.
                 required: true
-              - label: The provided reproduction is a [minimal reproducible](https://github.com/) of the bug.
+              - label: The provided reproduction is a [minimal reproducible](https://stackoverflow.com/help/minimal-reproducible-example) of the bug.
                 required: true
               - label: Double-checked that the issue is descriptive & concise.
                 required: true
