@@ -1,0 +1,2 @@
+> [!NOTE]
+> The procedure of cloning a repository to your local machine & submitting your changes differs from repository to repository. Make sure you check the actual repository you're working on for detailed instructions.
