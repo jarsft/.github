@@ -1,0 +1,24 @@
+name: Close Stale PRs & Issues
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: '15 1 * * *'
+permissions:
+    issues: write
+    pull-requests: write
+jobs:
+    stale:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/stale@v9
+              with:
+                  stale-issue-message: |
+                      This issue has been identified as stale because it has gone 14 days with no activity.
+
+                      The issue will be closed in 3 days. If this is incorrect, comment on the issue or remove the `stale` label.
+                  stale-pr-message: |
+                      This pull-request has been identified as stale because it has gone 13 days with no activity.
+
+                      The pull-request will be closed in 3 days. If this is incorrect, comment on the PR, remove the `stale` label, or merge the PR.
+                  days-before-stale: 14
+                  days-before-close: 3

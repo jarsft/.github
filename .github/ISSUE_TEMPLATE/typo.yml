@@ -18,6 +18,7 @@ body:
           options:
               - Documentation
               - Grammar
+              - Labels
     - type: textarea
       id: context
       attributes:
