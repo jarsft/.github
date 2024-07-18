@@ -1,10 +1,13 @@
 name: Documentation Correction
+title: 'Docs: '
+assignees:
+    - strbit
 description: Fix a documentation error or correct a grammar issue within this project.
 body:
     - type: markdown
       attributes:
           value: |
-              You're about to create a documentation correction within a Jarsoft repository.
+              ## You're about to create a documentation correction within a Jarsoft repository.
               The organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) apply.
     - type: dropdown
       id: type
@@ -15,6 +18,7 @@ body:
           options:
               - Documentation
               - Grammar
+              - Labels
     - type: textarea
       id: context
       attributes:
