@@ -1,10 +1,13 @@
 name: Issue Report
+title: 'Issue: '
+assignees:
+    - strbit
 description: Report an issue related to the code of this project.
 body:
     - type: markdown
       attributes:
           value: |
-              You're about to create a bug report within a Jarsoft repository.
+              ## You're about to create a bug report within a Jarsoft repository.
               The organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) apply.
     - type: textarea
       id: description
@@ -27,7 +30,7 @@ body:
       attributes:
           label: Workbench information
           description: |
-              Run `npx envinfo --system --browsers --binaries` and paste the output here.
+              ## Run `npx envinfo --system --browsers --binaries` and paste the output here.
               (note: you need [`Node.js`](https://nodejs.org) & [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to run this script)
           render: shell
           placeholder: Your system, browsers & binaries...
