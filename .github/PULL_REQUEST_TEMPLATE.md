@@ -1,6 +1,9 @@
 <!--
     DO NOT IGNORE THIS TEMPLATE!
     You are creating a new pull request within a Jarsoft repository.
+    
+    Note that, unless already signed, you will have to sign a CLA (Contributor License Agreement) in order to merge this PR.
+    If you do not agree to the CLA terms & conditions, please refrain from creating this pull-request.
 
     Before submitting the PR, please make sure you have done the following:
 
