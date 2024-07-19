@@ -1,3 +1,5 @@
+# Jarsoft Contributor License Agreement
+
 In order to clarify the intellectual property license granted with respect to Contributions from any person or entity, Jarsoft (the "Organization") must have a Contributor License Agreement (the "CLA") on file that has been signed by each Contributor, indicating agreement to the license terms below. This license is for your protection as a Contributor as well as the protection of the Organization. Your execution and/or acceptance of this Agreement does not influence any of your rights and title to your Contributions, except that you may distribute your Contributions only if the source code of the project your Contributions were originally added to is made publicly available.
 
 This version of the Agreement allows an entity ("Organization") or individual to submit Contributions (jointly and severally, "Contributor") to the Organization, to authorize Contributions submitted by its designated employees and divisions to the Company, and to grant copyright and patent licenses thereto.
