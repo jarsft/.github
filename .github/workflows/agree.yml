@@ -10,6 +10,10 @@ jobs:
         name: Assistant
         runs-on: ubuntu-latest
         permissions:
+            actions: write
+            contents: write
+            pull-requests: write
+            statuses: write
             id-token: write
         steps:
             - name: 'Create Token'
