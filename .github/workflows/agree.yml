@@ -1,9 +1,16 @@
 name: Require CLA Agreement
 on:
+    workflow_dispatch:
     issue_comment:
         types: [created]
     pull_request_target:
-        types: [opened, synchronize]
+        types: [opened, closed, synchronize]
+permissions:
+    actions: write
+    contents: write
+    pull-requests: write
+    statuses: write
+    id-token: write
 jobs:
     assistant:
         name: Assistant
@@ -25,7 +32,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
               with:
-                  path-to-signatures: 'signed_clas.json'
+                  path-to-signatures: 'signed.json'
                   path-to-document: 'https://github.com/jarsft/.github/blob/production/CLA.md'
                   branch: 'production'
                   allowlist: bot*
