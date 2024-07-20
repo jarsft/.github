@@ -8,8 +8,6 @@ on:
 permissions:
     actions: write
     contents: write
-    pull-requests: write
-    statuses: write
     id-token: write
 jobs:
     assistant:
@@ -21,10 +19,7 @@ jobs:
               id: token
               with:
                   permissions: |
-                      actions: write
-                      contents: write
-                      pull-requests: write
-                      statuses: write
+                      repo: write
 
             - name: 'CLA Assistant'
               uses: cla-assistant/github-action@v2.1.1-beta
