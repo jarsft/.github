@@ -1,5 +1,6 @@
 name: Require CLA Agreement
 on:
+    workflow_dispatch:
     issue_comment:
         types: [created]
     pull_request_target:
@@ -8,24 +9,25 @@ jobs:
     assistant:
         name: Assistant
         runs-on: ubuntu-latest
+        permissions:
+            id-token: write
         steps:
-            - name: 'Create Token'
+            - name: Create Token
               uses: qoomon/actions--access-token@v3
               id: token
               with:
                   permissions: |
-                      actions: write
                       contents: write
-                      pull-requests: write
-                      statuses: write
+                      issues: write
+                      pull-request: write
 
-            - name: 'CLA Assistant'
+            - name: CLA Assistant
               uses: cla-assistant/github-action@v2.1.1-beta
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
               with:
-                  path-to-signatures: 'signed_clas.json'
+                  path-to-signatures: 'cla.json'
                   path-to-document: 'https://github.com/jarsft/.github/blob/production/CLA.md'
                   branch: 'production'
                   allowlist: bot*
@@ -37,5 +39,5 @@ jobs:
                   custom-notsigned-prcomment: 'To continue with merging the pull-request, please sign the CLA (Contributor License Agreement).'
                   custom-pr-sign-comment: 'I have read the CLA document and hereby sign & accept the CLA agreement'
                   custom-allsigned-prcomment: '**CLA Status** - All contributors have signed the CLA.'
-                  #lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
-                  #use-dco-flag: true - If you are using DCO instead of CLA
+                  # lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
+                  # use-dco-flag: true - If you are using DCO instead of CLA
