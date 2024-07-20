@@ -19,7 +19,7 @@ jobs:
                   permissions: |
                       contents: write
                       issues: write
-                      pull-request: write
+                      pull-requests: write
 
             - name: CLA Assistant
               uses: cla-assistant/github-action@v2.1.1-beta
