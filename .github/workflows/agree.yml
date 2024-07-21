@@ -7,7 +7,7 @@ on:
         types: [opened, closed, synchronize]
 permissions:
     actions: write
-    contents: write
+    contents: read
     pull-requests: write
     id-token: write
 jobs:
@@ -21,7 +21,7 @@ jobs:
               with:
                   permissions: |
                       actions: write
-                      contents: write
+                      contents: read
                       pull-requests: write
 
             - name: CLA Assistant
