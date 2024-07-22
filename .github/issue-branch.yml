@@ -1,0 +1,37 @@
+mode: immediate # auto, immediate or chatops
+
+# Use a different prefix for each label
+branches:
+    - label: Issue
+      # In the templates, issues are prefixed with 'Issue:', which is sliced
+      # out of the branch name, leaving the remaining 10 characters.
+      prefix: 'issue/${issue.title[6,16],}'
+    - label: Feature
+      # In the templates, feature requests are prefixed with 'Feature:', which is sliced
+      # out of the branch name, leaving the remaining 10 characters.
+      prefix: 'feat/${issue.title[8,15],}'
+    - label: Docs
+      # In the templates, documentation corrections are prefixed with 'Docs:', which is
+      # sliced out of the branch name, leaving the remaining 10 characters.
+      prefix: 'docs/${issue.title[5,15],}'
+    - label: '*'
+      # For any other issue, a branch with the 'branch' prefix is created.
+      prefix: 'branch/${issue.title[0,15],}'
+
+# silent: false
+gitSafeReplacementChar: '-'
+# gitReplaceChars: 'ab/'
+# autoLinkIssue: true
+autoCloseIssue: true
+# defaultBranch: 'production'
+# openDraftPR: true
+# openPR: true
+# copyIssueDescriptionToPR: true
+# copyIssueLabelsToPR: true
+# copyIssueAssigneeToPR: true
+# copyIssueProjectsToPR: true
+# copyIssueMilestoneToPR: true
+# prSkipCI: true
+# conventionalPrTitles: true
+conventionalStyle: semver-no-gitmoji
+commentMessage: '**${branchName}** - created for issue: **${issue.title}**'
