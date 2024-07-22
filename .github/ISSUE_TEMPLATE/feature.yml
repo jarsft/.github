@@ -8,7 +8,14 @@ body:
       attributes:
           value: |
               ## You're about to create a feature request within a Jarsoft repository.
-              The organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) apply.
+
+              Make sure your issue is descriptive & concise. Discursive issues will most likely be closed by the team. Feel free to use external guides and resources (such as [Stackoverflow's suggestions](https://stackoverflow.com/help/how-to-ask)) to assist in writing a well-formed issue.
+
+              Before you start, be sure you are aware of the following points:
+              * Avoid duplicating any existing feature requests which already track or implement your request.
+              * Aim to find a descriptive and precise title for your bug report.
+
+              *By creating the issue, the organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) documents apply.*
     - type: textarea
       id: description
       attributes:

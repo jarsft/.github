@@ -1,0 +1,71 @@
+name: Documentation Correction
+title: 'Docs: '
+assignees:
+    - strbit
+description: Fix a documentation error within this project.
+body:
+    - type: markdown
+      attributes:
+          value: |
+              ## You're about to create a correction request within a Jarsoft repository.
+
+              Make sure your issue is descriptive & concise. Discursive issues will most likely be closed by the team. Feel free to use external guides and resources (such as [Stackoverflow's suggestions](https://stackoverflow.com/help/how-to-ask)) to assist in writing a well-formed issue.
+
+              Before you start, be sure you are aware of the following points:
+              * Avoid duplicating any existing issues which already track or resolve your problem.
+              * Aim to find a descriptive and precise title for your bug report.
+
+              *By creating the issue, the organization's [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md) & [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md) documents apply.*
+    - type: dropdown
+      id: type
+      attributes:
+          label: Type of correction
+          description: Select which the type of correction you're requesting.
+          multiple: false
+          options:
+              - Documentation
+              - Grammar
+              - Labels
+    - type: textarea
+      id: context
+      attributes:
+          label: Additional information
+          description: |
+              Provide details on the change you would like to see made.
+
+              If you're requesting a new document, please describle what you want to see created.
+          placeholder: I want to correct or add...
+      validations:
+          required: true
+    - type: input
+      id: context
+      attributes:
+          label: Additional information
+          description: |
+              Please provide a link to the document you want to see changes.
+
+              If you want to change multiple files (e.x. many files in a folder of a repository) you can link the folder itself and explain which files you want to change in the text area above.
+
+              If you're requesting a new document, please provide details on where you want
+          placeholder: If you have multiple links, seperate them with a comma.
+      validations:
+          required: true
+    - type: checkboxes
+      id: checkboxes
+      attributes:
+          label: Submission checklist
+          description: Before submitting the issue, please make sure you do the following
+          options:
+              - label: Follow the [Code of Conduct](https://github.com/jarsft/.github/blob/production/CODE_OF_CONDUCT.md)
+                required: true
+              - label: Read the [Contribution Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md)
+                required: true
+              - label: Check that no issue that reports the same correction exists.
+                required: true
+    - type: checkboxes
+      id: contributions
+      attributes:
+          label: Optional contributions
+          description: Check the boxes if you have possible solutions or finished code fixes.
+          options:
+              - label: I am willing to submit a PR to fix this issue.
