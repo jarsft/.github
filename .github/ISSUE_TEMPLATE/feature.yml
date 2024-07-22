@@ -36,7 +36,10 @@ body:
       id: context
       attributes:
           label: Additional information
-          description: Feel free to provide additional information which may help implement this feature.
+          description: |
+              Feel free to provide additional information which may help implement this feature.
+
+              It might include screenshots or files.
           placeholder: Additional information related to the feature...
       validations:
           required: false
