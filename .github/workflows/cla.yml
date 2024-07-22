@@ -2,13 +2,18 @@ name: Require CLA Agreement
 on:
     workflow_dispatch:
     issue_comment:
-        types: [created]
+        types:
+            - created
     pull_request_target:
-        types: [opened, closed, synchronize]
+        types:
+            - opened
+            - closed
+            - synchronize
 permissions:
     actions: write
     contents: read
     pull-requests: write
+    statuses: write
     id-token: write
 jobs:
     assistant:
@@ -23,9 +28,11 @@ jobs:
                       actions: write
                       contents: read
                       pull-requests: write
+                      statuses: write
 
             - name: CLA Assistant
-              uses: cla-assistant/github-action@v2.1.1-beta
+              uses: cla-assistant/github-action@v2.4.0
+              if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA document and hereby sign & accept the CLA agreement') || github.event_name == 'pull_request_target'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
@@ -40,7 +47,7 @@ jobs:
                   create-file-commit-message: 'feat: created file for CLA signatures'
                   signed-commit-message: 'chore: $contributorName has signed the CLA in $owner/$repo#$pullRequestNo'
                   custom-notsigned-prcomment: 'To continue with merging the pull-request, please sign the CLA (Contributor License Agreement).'
-                  custom-pr-sign-comment: 'I have read the CLA document and hereby sign & accept the CLA agreement'
+                  # custom-pr-sign-comment: 'I have read the CLA document and hereby sign & accept the CLA agreement'
                   custom-allsigned-prcomment: '**CLA Status** - All contributors have signed the CLA.'
-                  #lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
-                  #use-dco-flag: true - If you are using DCO instead of CLA
+                  # lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
+                  # use-dco-flag: true - If you are using DCO instead of CLA
