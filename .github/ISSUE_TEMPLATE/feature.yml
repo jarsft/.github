@@ -2,6 +2,8 @@ name: Feature Request
 title: 'Feature: '
 assignees:
     - strbit
+labels:
+    - Feature
 description: Propose a new feature to add to the project.
 body:
     - type: markdown
