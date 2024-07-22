@@ -38,9 +38,9 @@ body:
       validations:
           required: true
     - type: input
-      id: context
+      id: links
       attributes:
-          label: Additional information
+          label: Document Link(s)
           description: |
               Please provide a link to the document you want to see changes.
 
