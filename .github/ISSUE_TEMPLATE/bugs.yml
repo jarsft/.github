@@ -2,6 +2,8 @@ name: Issue Report
 title: 'Issue: '
 assignees:
     - strbit
+labels:
+    - Issue
 description: Report an issue related to the code of this project.
 body:
     - type: markdown

@@ -2,6 +2,8 @@ name: Documentation Correction
 title: 'Docs: '
 assignees:
     - strbit
+labels:
+    - Docs
 description: Fix a documentation error within this project.
 body:
     - type: markdown
