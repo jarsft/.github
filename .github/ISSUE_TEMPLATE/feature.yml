@@ -55,3 +55,11 @@ body:
                 required: true
               - label: Check that no issue that requests the same feature exists.
                 required: true
+    - type: checkboxes
+      id: contributions
+      attributes:
+          label: Optional contributions
+          description: Check the boxes if you have possible solutions or finished code fixes.
+          options:
+              - label: I am willing to submit a PR to implement this feature.
+              - label: I am willing to submit an unfinished/unstable PR. (failing tests, etc.)
