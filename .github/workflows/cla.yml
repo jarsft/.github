@@ -21,8 +21,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Create Token
-              uses: qoomon/actions--access-token@v3
+              uses: actions/create-github-app-token@v1
               id: token
+              with:
+                  app-id: ${{ vars.APP_ID }}
+                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+            - name: Create Token
+              uses: qoomon/actions--access-token@v3
+              id: pat
               with:
                   permissions: |
                       actions: write
@@ -34,8 +41,8 @@ jobs:
               uses: cla-assistant/github-action@v2.4.0
               if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA document and hereby sign & accept the CLA agreement') || github.event_name == 'pull_request_target'
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
+                  GITHUB_TOKEN: ${{ steps.token.outputs.token }}
+                  PERSONAL_ACCESS_TOKEN: ${{ steps.pat.outputs.token }}
               with:
                   path-to-signatures: signatures.json
                   path-to-document: 'https://github.com/jarsft/.github/blob/production/CLA.md'
