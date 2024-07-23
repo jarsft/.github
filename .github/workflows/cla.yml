@@ -14,7 +14,6 @@ permissions:
     contents: write
     pull-requests: write
     statuses: write
-    id-token: write
 jobs:
     assistant:
         name: Assistant
@@ -43,7 +42,12 @@ jobs:
                   remote-repository-name: signatures
                   create-file-commit-message: 'feat: created file for CLA signatures'
                   signed-commit-message: 'chore: $contributorName has signed the CLA in $owner/$repo#$pullRequestNo'
-                  custom-notsigned-prcomment: 'To continue with merging the pull-request, please sign the CLA (Contributor License Agreement).'
+                  custom-notsigned-prcomment: |
+                      We've received your pull-request, but it looks like this may be your first contribution to a Jarsoft project. Before we can merge your pull-request, you'll need to sign a [Contributor License Agreement](https://en.wikipedia.org/wiki/Contributor_License_Agreement) allowing Jarsoft (or for public repositories, the public) to use your changes.
+
+                      * See the [CLA document here](https://github.com/jarsft/.github/blob/production/CLA.md) for details.
+
+                      Reply with the phrase at the bottom of this comment to sign the CLA & to proceed with the merge. If you've already signed the CLA, comment `recheck`, the workflow will automatically re-run & re-check your signature status.
                   # custom-pr-sign-comment: 'I have read the CLA document and hereby sign & accept the CLA agreement'
                   custom-allsigned-prcomment: '**CLA Status** - All contributors have signed the CLA.'
                   # lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
