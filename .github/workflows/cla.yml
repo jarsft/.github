@@ -27,22 +27,12 @@ jobs:
                   app-id: ${{ vars.APP_ID }}
                   private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-            - name: Access Token
-              uses: qoomon/actions--access-token@v3
-              id: pat
-              with:
-                  permissions: |
-                      actions: write
-                      contents: write
-                      pull-requests: write
-                      statuses: write
-
             - name: CLA Assistant
               uses: cla-assistant/github-action@v2.4.0
               if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA document and hereby sign & accept the CLA agreement') || github.event_name == 'pull_request_target'
               env:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
-                  PERSONAL_ACCESS_TOKEN: ${{ steps.pat.outputs.token }}
+                  PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_ACCESS_TOKEN }}
               with:
                   path-to-signatures: signatures.json
                   path-to-document: 'https://github.com/jarsft/.github/blob/production/CLA.md'
