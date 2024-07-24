@@ -23,11 +23,16 @@ jobs:
               uses: actions/create-github-app-token@v1
               id: token
               with:
-                  app-id: ${{ vars.APP_ID }}
-                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
+                  app-id: ${{ vars.CLA_APP_ID }}
+                  private-key: ${{ secrets.CLA_APP_PRIVATE_KEY }}
+
+            - name: Set Github Config
+              run: |
+                  git config --global user.name "jarsoft-cla[bot]"
+                  git config --global user.email ${{ vars.CLA_APP_ID }}+jarsoft-cla[bot]@users.noreply.github.com
 
             - name: CLA Assistant
-              uses: cla-assistant/github-action@v2.4.0
+              uses: contributor-assistant/github-action@v2.4.0
               if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA document and hereby sign & accept the CLA agreement') || github.event_name == 'pull_request_target'
               env:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
@@ -39,7 +44,7 @@ jobs:
                   allowlist: bot*
 
                   remote-organization-name: jarsft
-                  remote-repository-name: signatures
+                  remote-repository-name: signatures/version1.json
                   create-file-commit-message: 'feat: created file for CLA signatures'
                   signed-commit-message: 'chore: $contributorName has signed the CLA in $owner/$repo#$pullRequestNo'
                   custom-notsigned-prcomment: |
