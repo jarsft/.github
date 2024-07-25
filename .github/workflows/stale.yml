@@ -18,7 +18,7 @@ jobs:
 
                       The issue will be closed in 3 days. If this is incorrect, comment on the issue or remove the `stale` label.
                   stale-pr-message: |
-                      This pull-request has been identified as stale because it has gone 13 days with no activity.
+                      This pull-request has been identified as stale because it has gone 14 days with no activity.
 
                       The pull-request will be closed in 3 days. If this is incorrect, comment on the PR, remove the `stale` label, or merge the PR.
                   days-before-stale: 14
