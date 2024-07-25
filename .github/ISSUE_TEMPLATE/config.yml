@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+    - name: Contribution Guidelines
+      url: https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md
+      about: Read through these guidelines prior to contributing.
+    - name: Why & how to make a reproduction?
+      url: https://antfu.me/posts/why-reproductions-are-required
+      about: Reproductions are required in order to file a project issue.
+ 
