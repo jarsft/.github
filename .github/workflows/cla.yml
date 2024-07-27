@@ -38,13 +38,13 @@ jobs:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
                   PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_ACCESS_TOKEN }}
               with:
-                  path-to-signatures: signatures.json
+                  path-to-signatures: signatures/version1.json
                   path-to-document: 'https://github.com/jarsft/.github/blob/production/CLA.md'
                   branch: production
                   allowlist: bot*
 
                   remote-organization-name: jarsft
-                  remote-repository-name: signatures/version1.json
+                  remote-repository-name: signatures
                   create-file-commit-message: 'feat: created file for CLA signatures'
                   signed-commit-message: 'chore: $contributorName has signed the CLA in $owner/$repo#$pullRequestNo'
                   custom-notsigned-prcomment: |
