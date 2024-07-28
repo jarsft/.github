@@ -16,7 +16,7 @@ permissions:
     statuses: write
 jobs:
     assistant:
-        name: Assistant
+        name: Start CLA Assistant
         runs-on: ubuntu-latest
         steps:
             - name: App Token
