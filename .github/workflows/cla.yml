@@ -39,7 +39,7 @@ jobs:
                   PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_ACCESS_TOKEN }}
               with:
                   path-to-signatures: signatures/version1.json
-                  path-to-document: 'https://github.com/jarsft/.github/blob/production/CLA.md'
+                  path-to-document: 'https://github.com/jarsft/.github/blob/production/agreements/CLA.md'
                   branch: production
                   allowlist: bot*
 
@@ -50,7 +50,7 @@ jobs:
                   custom-notsigned-prcomment: |
                       We've received your pull-request, but it looks like this may be your first contribution to a Jarsoft project. Before we can merge your pull-request, you'll need to sign a [Contributor License Agreement](https://en.wikipedia.org/wiki/Contributor_License_Agreement) allowing Jarsoft (or for public repositories, the public) to use your changes.
 
-                      * See the [CLA document here](https://github.com/jarsft/.github/blob/production/CLA.md) for details.
+                      * See the [CLA document here](https://github.com/jarsft/.github/blob/production/agreements/CLA.md) for details.
 
                       Reply with the phrase at the bottom of this comment to sign the CLA & to proceed with the merge. If you've already signed the CLA, comment `recheck`, the workflow will automatically re-run & re-check your signature status.
                   # custom-pr-sign-comment: 'I have read the CLA document and hereby sign & accept the CLA agreement'
