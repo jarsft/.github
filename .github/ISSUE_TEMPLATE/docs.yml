@@ -48,9 +48,7 @@ body:
           description: |
               Please provide a link to the document you want to see changes.
 
-              If you want to change multiple files (e.x. many files in a folder of a repository) you can link the folder itself and explain which files you want to change in the text area above.
-
-              If you're requesting a new document, please provide details on where you want.
+              If you want to change multiple files (e.x. many files in a folder of a repository) you can link the folder itself and explain which files you want to change in the text area above. If you're requesting a new document, please provide details on where you want it to be located.
           placeholder: If you have multiple links, seperate them with a comma.
       validations:
           required: true
