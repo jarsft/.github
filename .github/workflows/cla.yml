@@ -58,7 +58,7 @@ jobs:
                   # lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
                   # use-dco-flag: true - If you are using DCO instead of CLA
     notify:
-        name: Notify Release
+        name: Notify Signature
         runs-on: ubuntu-latest
         needs: assistant
         steps:
