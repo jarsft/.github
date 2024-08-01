@@ -60,11 +60,11 @@ jobs:
     notify:
         name: Notify Signature
         runs-on: ubuntu-latest
+        if: (github.event.issue.pull_request && github.event.comment.body == ${{ vars.CLA_SIGN_COMMENT }})
         needs: assistant
         steps:
             - name: Notify Signature
               uses: rjstone/discord-webhook-notify@v1
-              if: (github.event.issue.pull_request && github.event.comment.body == ${{ vars.CLA_SIGN_COMMENT }})
               with:
                   webhookUrl: ${{ secrets.CLA_WEBHOOK_URL }}
                   severity: info

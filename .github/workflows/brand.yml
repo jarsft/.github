@@ -39,7 +39,7 @@ jobs:
                   color: '#88af2c'
                   username: Jarsoft Branding
                   details: |
-                      Branding assets updated via a new ${{ github.event_name }} event.
+                      Branding assets updated via a new **${{ github.event_name }}** event.
                       **See Amazon storage bucket for details.**
 
                       [→ Debug this workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
