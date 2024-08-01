@@ -5,7 +5,6 @@ on:
             bucket:
                 description: Upload to specific bucket?
                 required: true
-                default: jar.storage
     push:
         paths:
             - specs/**/*
@@ -22,7 +21,7 @@ jobs:
               with:
                   aws_key_id: ${{ secrets.BRANDING_AWS_KEY }}
                   aws_secret_access_key: ${{ secrets.BRANDING_AWS_SECRET_KEY }}
-                  aws_bucket: ${{ inputs.bucket || 'jar.storage' }}
+                  aws_bucket: ${{ inputs.bucket || vars.AWS_STORAGE_BUCKET }}
                   source_dir: branding
                   destination_dir: branding
                   # endpoint: ''
