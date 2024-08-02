@@ -26,6 +26,8 @@ jobs:
               with:
                   app-id: ${{ vars.CLA_APP_ID }}
                   private-key: ${{ secrets.CLA_APP_PRIVATE_KEY }}
+                  # Removes the need to use PATs for external repositories.
+                  owner: ${{ github.repository_owner }}
 
             - name: Set Github Config
               run: |
@@ -36,7 +38,7 @@ jobs:
               uses: contributor-assistant/github-action@v2.4.0
               env:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
-                  PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_ACCESS_TOKEN }}
+                  PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
               with:
                   path-to-signatures: signatures/version1.json
                   path-to-document: https://github.com/jarsft/.github/blob/production/agreements/CLA.md
@@ -46,7 +48,7 @@ jobs:
                   remote-organization-name: jarsft
                   remote-repository-name: signatures
                   create-file-commit-message: 'feat: created file for CLA signatures'
-                  signed-commit-message: 'chore: $contributorName has signed the CLA in $owner/$repo#${{ github.event.pull_request.number }}'
+                  signed-commit-message: 'chore: `$contributorName` has signed the CLA in `$owner/$repo#${{ github.event.number }}`'
                   custom-notsigned-prcomment: |
                       We've received your pull-request, but it looks like this may be your first contribution to a Jarsoft project. Before we can merge your pull-request, you'll need to sign a [Contributor License Agreement](https://en.wikipedia.org/wiki/Contributor_License_Agreement) allowing Jarsoft (or for public repositories, the public) to use your changes.
 
