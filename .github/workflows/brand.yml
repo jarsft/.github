@@ -7,7 +7,7 @@ on:
                 required: true
     push:
         paths:
-            - specs/**/*
+            - branding/**/*
 jobs:
     upload:
         name: Upload Assets
@@ -24,7 +24,6 @@ jobs:
                   aws_bucket: ${{ inputs.bucket || vars.AWS_STORAGE_BUCKET }}
                   source_dir: branding
                   destination_dir: branding
-                  # endpoint: ''
     notify:
         name: Notify Upload
         runs-on: ubuntu-latest
@@ -36,10 +35,11 @@ jobs:
               with:
                   webhookUrl: ${{ secrets.BRANDING_WEBHOOK_URL }}
                   severity: info
-                  color: '#88af2c'
-                  username: Jarsoft Branding
                   details: |
-                      Branding assets updated via a new **${{ github.event_name }}** event.
-                      **See Amazon storage bucket for details.**
-
+                      New branding assets were uploaded via a **${{ github.event_name }}** event.
+                      **Please see the `${{ inputs.bucket || vars.AWS_STORAGE_BUCKET }}` bucket for details.**
+                  footer: |
                       [→ Debug this workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+                  username: Jarsoft Branding
+                  color: '#88af2c'
+                  avatarUrl: https://storage.jar.run/branding/light/image.png
