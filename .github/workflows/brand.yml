@@ -4,7 +4,7 @@ on:
         inputs:
             bucket:
                 description: Upload to specific bucket?
-                required: true
+                required: false
     push:
         paths:
             - branding/**/*
@@ -38,7 +38,7 @@ jobs:
                   details: |
                       New branding assets were uploaded via a **${{ github.event_name }}** event.
                       **Please see the `${{ inputs.bucket || vars.AWS_STORAGE_BUCKET }}` bucket for details.**
-                  footer: |
+
                       [→ Debug this workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
                   username: Jarsoft Branding
                   color: '#88af2c'
