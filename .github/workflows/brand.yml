@@ -42,4 +42,4 @@ jobs:
                       [→ Debug this workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
                   username: Jarsoft Branding
                   color: '#88af2c'
-                  avatarUrl: https://storage.jar.run/branding/light/image.png
+                  avatarUrl: https://storage.jar.run/branding/light/mark.png
