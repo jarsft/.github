@@ -29,7 +29,7 @@ body:
               - Grammar
               - Labels
       validations:
-        required: true
+          required: true
     - type: textarea
       id: context
       attributes:
