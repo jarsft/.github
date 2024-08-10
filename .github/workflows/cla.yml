@@ -44,6 +44,10 @@ jobs:
                   branch: production
                   allowlist: bot*
 
+                  # This action input does not exist yet in the official action and is part of a proposed change.
+                  # Uncomment if https://github.com/contributor-assistant/github-action/pull/157 is successfully merged.
+                  # exemptRepoOrgMembers: true
+
                   remote-organization-name: jarsft
                   remote-repository-name: signatures
                   create-file-commit-message: 'feat: created file for CLA signatures'
