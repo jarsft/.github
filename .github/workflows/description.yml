@@ -34,7 +34,6 @@ jobs:
               with:
                   github_token: ${{ steps.token.outputs.token }}
                   openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
-                  max_tokens: 200
                   overwrite_description: true
 
             - name: Set ${{ job.status }} Status
