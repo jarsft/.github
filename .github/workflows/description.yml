@@ -1,0 +1,59 @@
+name: Generate PR Description
+on:
+    issue_comment:
+        types:
+            - created
+permissions:
+    pull-requests: write
+    statuses: write
+jobs:
+    generate:
+        runs-on: ubuntu-latest
+        if: github.event.issue.pull_request && contains(github.event.comment.body, '/generate-description')
+        steps:
+            - name: Get Branch
+              uses: xt0rted/pull-request-comment-branch@v2
+              id: branch
+
+            - name: App Token
+              uses: actions/create-github-app-token@v1
+              id: token
+              with:
+                  app-id: ${{ vars.UPKEEP_APP_ID }}
+                  private-key: ${{ secrets.UPKEEP_APP_PRIVATE_KEY }}
+
+            - name: Set Pending Status
+              uses: myrotvorets/set-commit-status-action@master
+              with:
+                  sha: ${{ steps.branch.outputs.head_sha }}
+                  token: ${{ steps.token.outputs.token }}
+                  status: pending
+
+            - name: Generate Description
+              uses: platisd/openai-pr-description@master
+              with:
+                  github_token: ${{ steps.token.outputs.token }}
+                  openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
+                  max_tokens: 200
+                  overwrite_description: true
+
+            - name: Set ${{ job.status }} Status
+              uses: myrotvorets/set-commit-status-action@master
+              if: always()
+              with:
+                  sha: ${{ steps.branch.outputs.head_sha }}
+                  token: ${{ steps.token.outputs.token }}
+                  status: ${{ job.status }}
+
+            - name: Add Comment
+              uses: actions/github-script@v7
+              if: always()
+              with:
+                  script: |
+                      const name = '${{ github.workflow }}';
+                      const url = 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+                      const success = '${{ job.status }}' === 'success';
+                      const body = `${name}: ${success ? 'Successful' : 'Failed, check workflow run for details'}\n[→ Debug this workflow](${url})`;
+
+                      const { issue, repo } = context;
+                      await github.rest.issues.createComment({ issue_number: issue.number, owner: repo.owner, repo: repo.repo, body});
