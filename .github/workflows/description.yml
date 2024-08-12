@@ -34,7 +34,7 @@ jobs:
               with:
                   github_token: ${{ steps.token.outputs.token }}
                   openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
-                  overwrite_description: true
+                  overwrite_description: ${{ contains(github.event.comment.body, 'overwrite') && true || false }}
 
             - name: Set ${{ job.status }} Status
               uses: myrotvorets/set-commit-status-action@master
@@ -52,7 +52,7 @@ jobs:
                       const name = '${{ github.workflow }}';
                       const url = 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}';
                       const success = '${{ job.status }}' === 'success';
-                      const body = `${name}: ${success ? 'Successful' : 'Failed, check workflow run for details'}\n[→ Debug this workflow](${url})`;
+                      const body = `${name}: ${success ? 'Successful' : 'Failed, check workflow run for details'}.\n[→ Debug this workflow](${url})`;
 
                       const { issue, repo } = context;
                       await github.rest.issues.createComment({ issue_number: issue.number, owner: repo.owner, repo: repo.repo, body});
