@@ -15,6 +15,12 @@ jobs:
               uses: xt0rted/pull-request-comment-branch@v2
               id: branch
 
+            - name: Get Pull-request Details
+              uses: 8BitJonny/gh-get-current-pr@3.0.0
+              id: pull-request
+              with:
+                  sha: ${{ steps.branch.outputs.head_sha }}
+
             - name: App Token
               uses: actions/create-github-app-token@v1
               id: token
@@ -35,6 +41,17 @@ jobs:
                   github_token: ${{ steps.token.outputs.token }}
                   openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
                   overwrite_description: ${{ contains(github.event.comment.body, 'overwrite') && true || false }}
+                  completion_prompt: |
+                      Write a pull-request description which focuses on the motivation behind the changes and why it improves the project.
+                      Go straight to the point. Following is the current body of the pull-request, ONLY modify the fields related to the
+                      description (e.x. About this PR) of the pull-request.
+
+                      ```md
+                      ${{ steps.pull-request.outputs.pr_body }}
+                      ```
+
+                      The following is what was changed in the pull-request. Try to keep your response short yet
+                      verbose so that the main idea of the pull-request is clear. \n
 
             - name: Set ${{ job.status }} Status
               uses: myrotvorets/set-commit-status-action@master
