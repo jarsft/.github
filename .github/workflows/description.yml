@@ -45,6 +45,12 @@ jobs:
                   github_token: ${{ steps.token.outputs.token }}
                   openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
                   overwrite_description: true
+                  # pull_request_id: -
+                  # openai_model: gpt-4o-mini
+                  max_tokens: ${{ vars.DESCRIPTION_MAX_TOKENS || 1200 }}
+                  temperature: ${{ vars.DESCRIPTION_TEMPERATURE || 0.4 }}
+                  # sample_prompt: -
+                  # sample_response: -
                   completion_prompt: |
                       Write a pull-request description which describes the motivation and idea of the changes and why it improves the project. Go straight to the point.
                       Only modify the fields related to the description of the pull-request. Following is the current body of the pull-request:
