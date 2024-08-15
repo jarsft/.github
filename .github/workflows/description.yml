@@ -8,6 +8,7 @@ permissions:
     statuses: write
 jobs:
     generate:
+        name: Generate Description
         runs-on: ubuntu-latest
         if: github.event.issue.pull_request && contains(github.event.comment.body, '/generate-description')
         steps:
