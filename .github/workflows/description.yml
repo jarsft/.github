@@ -11,22 +11,26 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event.issue.pull_request && contains(github.event.comment.body, '/generate-description')
         steps:
-            - name: Get Branch
-              uses: xt0rted/pull-request-comment-branch@v2
-              id: branch
-
-            - name: Get Pull-request Details
-              uses: 8BitJonny/gh-get-current-pr@3.0.0
-              id: pull-request
-              with:
-                  sha: ${{ steps.branch.outputs.head_sha }}
-
             - name: App Token
               uses: actions/create-github-app-token@v1
               id: token
               with:
                   app-id: ${{ vars.UPKEEP_APP_ID }}
                   private-key: ${{ secrets.UPKEEP_APP_PRIVATE_KEY }}
+                  owner: ${{ github.repository_owner }}
+
+            - name: Get Branch
+              uses: xt0rted/pull-request-comment-branch@v2
+              id: branch
+              with:
+                  repo_token: ${{ steps.token.outputs.token }}
+
+            - name: Get Pull-request Details
+              uses: 8BitJonny/gh-get-current-pr@3.0.0
+              id: pull-request
+              with:
+                  github-token: ${{ steps.token.outputs.token }}
+                  sha: ${{ steps.branch.outputs.head_sha }}
 
             - name: Set Pending Status
               uses: myrotvorets/set-commit-status-action@master
@@ -40,18 +44,15 @@ jobs:
               with:
                   github_token: ${{ steps.token.outputs.token }}
                   openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
-                  overwrite_description: ${{ contains(github.event.comment.body, 'overwrite') && true || false }}
+                  overwrite_description: true
                   completion_prompt: |
-                      Write a pull-request description which focuses on the motivation behind the changes and why it improves the project.
-                      Go straight to the point. Following is the current body of the pull-request, ONLY modify the fields related to the
-                      description (e.x. About this PR) of the pull-request.
+                      Write a pull-request description which describes the motivation and idea of the changes and why it improves the project. Go straight to the point.
+                      Only modify the fields related to the description of the pull-request. Following is the current body of the pull-request:
 
-                      ```md
                       ${{ steps.pull-request.outputs.pr_body }}
-                      ```
 
-                      The following is what was changed in the pull-request. Try to keep your response short yet
-                      verbose so that the main idea of the pull-request is clear. \n
+                      Refrain from using vague phrases such as "streamlined future development" or "enhances". Respond with the full PR body. Try to not make up any
+                      information; you're allowed to not provide an extremely long response. The following is what was changed in the pull-request: \n
 
             - name: Set ${{ job.status }} Status
               uses: myrotvorets/set-commit-status-action@master
@@ -66,10 +67,9 @@ jobs:
               if: always()
               with:
                   script: |
-                      const name = '${{ github.workflow }}';
                       const url = 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}';
                       const success = '${{ job.status }}' === 'success';
-                      const body = `${name}: ${success ? 'Successful' : 'Failed, check workflow run for details'}.\n[→ Debug this workflow](${url})`;
+                      const body = `**${success ? 'Generated pull-request description' : 'Failed to generate PR description'}.**\n[→ Debug this workflow](${url})`;
 
                       const { issue, repo } = context;
                       await github.rest.issues.createComment({ issue_number: issue.number, owner: repo.owner, repo: repo.repo, body});
