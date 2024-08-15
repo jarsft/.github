@@ -1,17 +1,21 @@
 <!--
     DO NOT IGNORE THIS TEMPLATE!
-    You are creating a new pull request within a Jarsoft repository.
-    
-    Note that, unless already signed, you will have to sign a CLA (Contributor License Agreement) in order to merge this PR.
-    If you do not agree to the CLA terms & conditions, please refrain from creating this pull-request.
+    You are creating a new pull-request within a Jarsoft repository.
 
-    Before submitting the PR, please make sure you have done the following:
+    Keep in mind that, unless previously signed, you will have to agree & sign a CLA (Contributor License Agreement) in order
+    to merge this PR. If you do not agree with the CLA, please refrain from creating this pull-request.
+
+    To auto-generate a pull-request description, create a new comment under this pull-request containing the command 
+    `/generate-description`, your pull-request will be automatically re-written according to the changes
+    connected to this pull-request.
+    
+    Before submitting the pull-request, please make sure you have done the following:
 
     - Read the [Contributing Guide](https://github.com/jarsft/.github/blob/production/CONTRIBUTING.md).
     - Checked that a PR that solves this issue the same way does not already exist (i.e. no duplicates exist).
-    - Provided a clear, concise description that addresses **what** issue the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
+    - Provided a clear, concise description that addresses **what** issue the PR is solving, or reference the issue that it solves.
 
-    Please remove this message once you have finished this pull-request!
+    Please remove all comments once you have finished writing this pull-request!
 -->
 
 ### About this PR
