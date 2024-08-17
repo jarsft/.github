@@ -28,13 +28,8 @@ jobs:
                   private-key: ${{ secrets.CLA_APP_PRIVATE_KEY }}
                   owner: ${{ github.repository_owner }}
 
-            - name: Set Github Config
-              run: |
-                  git config --global user.name "jarsoft-cla[bot]"
-                  git config --global user.email ${{ vars.CLA_APP_ID }}+jarsoft-cla[bot]@users.noreply.github.com
-
             - name: CLA Assistant
-              uses: contributor-assistant/github-action@v2.4.0
+              uses: entropyxyz/contributor-assistant-github-action@exemptRepoOrgMembers # contributor-assistant/github-action@v2.5.0
               env:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
                   PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
@@ -45,8 +40,8 @@ jobs:
                   allowlist: bot*
 
                   # This action input does not exist yet in the official action and is part of a proposed change.
-                  # Uncomment if https://github.com/contributor-assistant/github-action/pull/157 is successfully merged.
-                  # exemptRepoOrgMembers: true
+                  # Revert to the original action if https://github.com/contributor-assistant/github-action/pull/157 is successfully merged.
+                  exemptRepoOrgMembers: true
 
                   remote-organization-name: jarsft
                   remote-repository-name: signatures
@@ -62,5 +57,5 @@ jobs:
                       Reply with the phrase at the bottom of this comment to sign the CLA & to proceed with the merge. If you've already signed the CLA, comment `recheck`, the workflow will automatically re-run & re-check your signature status.
                   # custom-pr-sign-comment: 'I have read the CLA document and hereby sign & accept the CLA agreement'
                   custom-allsigned-prcomment: '**CLA Status** - All contributors have signed the CLA.'
-                  # lock-pullrequest-aftermerge: false - if you don't want this bot to automatically lock the pull request after merging (default - true)
-                  # use-dco-flag: true - If you are using DCO instead of CLA
+                  # lock-pullrequest-aftermerge: false
+                  # use-dco-flag: true - If you're using a DCO agreement instead of a CLA.
