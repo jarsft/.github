@@ -28,9 +28,8 @@ jobs:
               id: credentials
               with:
                 audience: sts.amazonaws.com
-                aws-region: us-east-3
+                aws-region: ${{ inputs.region }}
                 role-to-assume: ${{ secrets.BRANDING_ROLE_ARN }}
-                role-duration-seconds: 1800
                 role-session-name: ${{ secrets.BRANDING_ROLE_SESSION }}
                 output-credentials: true
                 unset-current-credentials: true
