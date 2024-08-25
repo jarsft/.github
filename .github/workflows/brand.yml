@@ -3,8 +3,15 @@ on:
     workflow_dispatch:
         inputs:
             bucket:
-                description: Upload to specific bucket?
+                description: Upload all branding assets to a specific bucket?
                 required: false
+            region:
+                type: choice
+                description: Select an AWS region to deploy all branding assets to.
+                options:
+                    - us-east-1
+                default: 'us-east-1'
+                required: true
     push:
         paths:
             - branding/**/*
@@ -16,11 +23,23 @@ jobs:
             - name: Check-out Repository
               uses: actions/checkout@v4
 
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              id: credentials
+              with:
+                audience: sts.amazonaws.com
+                aws-region: us-east-3
+                role-to-assume: ${{ secrets.BRANDING_ROLE_ARN }}
+                role-duration-seconds: 1800
+                role-session-name: ${{ secrets.BRANDING_ROLE_SESSION }}
+                output-credentials: true
+                unset-current-credentials: true
+
             - name: Upload Assets
               uses: shallwefootball/s3-upload-action@v1.3.0
               with:
-                  aws_key_id: ${{ secrets.BRANDING_AWS_KEY }}
-                  aws_secret_access_key: ${{ secrets.BRANDING_AWS_SECRET_KEY }}
+                  aws_key_id: ${{ steps.credentials.outputs.aws-access-key-id }}
+                  aws_secret_access_key: ${{ steps.credentials.outputs.aws-secret-access-key }}
                   aws_bucket: ${{ inputs.bucket || vars.AWS_STORAGE_BUCKET }}
                   source_dir: branding
                   destination_dir: branding

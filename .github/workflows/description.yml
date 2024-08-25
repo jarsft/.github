@@ -44,7 +44,7 @@ jobs:
               uses: platisd/openai-pr-description@master
               with:
                   github_token: ${{ steps.token.outputs.token }}
-                  openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
+                  openai_api_key: ${{ secrets.DESCRIPTION_OPENAI_KEY }}
                   overwrite_description: true
                   # pull_request_id: -
                   # openai_model: gpt-4o-mini
