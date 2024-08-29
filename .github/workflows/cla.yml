@@ -29,7 +29,7 @@ jobs:
                   owner: ${{ github.repository_owner }}
 
             - name: CLA Assistant
-              uses: entropyxyz/contributor-assistant-github-action@exemptRepoOrgMembers # contributor-assistant/github-action@v2.5.0
+              uses: contributor-assistant/github-action@v2.5.0
               env:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
                   PERSONAL_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
@@ -40,8 +40,8 @@ jobs:
                   allowlist: bot*
 
                   # This action input does not exist yet in the official action and is part of a proposed change.
-                  # Revert to the original action if https://github.com/contributor-assistant/github-action/pull/157 is successfully merged.
-                  exemptRepoOrgMembers: true
+                  # Uncomment if https://github.com/contributor-assistant/github-action/pull/157 is successfully merged.
+                  # exemptRepoOrgMembers: true
 
                   remote-organization-name: jarsft
                   remote-repository-name: signatures
