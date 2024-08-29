@@ -20,7 +20,7 @@ jobs:
                   private-key: ${{ secrets.UPKEEP_APP_PRIVATE_KEY }}
                   owner: ${{ github.repository_owner }}
 
-            - name: Get Branch
+            - name: Get Pull-request Branch
               uses: xt0rted/pull-request-comment-branch@v2
               id: branch
               with:
@@ -33,18 +33,11 @@ jobs:
                   github-token: ${{ steps.token.outputs.token }}
                   sha: ${{ steps.branch.outputs.head_sha }}
 
-            - name: Set Pending Status
-              uses: myrotvorets/set-commit-status-action@master
-              with:
-                  sha: ${{ steps.branch.outputs.head_sha }}
-                  token: ${{ steps.token.outputs.token }}
-                  status: pending
-
             - name: Generate Description
               uses: platisd/openai-pr-description@master
               with:
                   github_token: ${{ steps.token.outputs.token }}
-                  openai_api_key: ${{ secrets.DESCRIPTIONS_OPENAI_KEY }}
+                  openai_api_key: ${{ secrets.DESCRIPTION_OPENAI_KEY }}
                   overwrite_description: true
                   # pull_request_id: -
                   # openai_model: gpt-4o-mini
@@ -60,14 +53,6 @@ jobs:
 
                       Refrain from using vague phrases such as "streamlined future development" or "enhances". Respond with the full PR body. Try to not make up any
                       information; you're allowed to not provide an extremely long response. The following is what was changed in the pull-request: \n
-
-            - name: Set ${{ job.status }} Status
-              uses: myrotvorets/set-commit-status-action@master
-              if: always()
-              with:
-                  sha: ${{ steps.branch.outputs.head_sha }}
-                  token: ${{ steps.token.outputs.token }}
-                  status: ${{ job.status }}
 
             - name: Add Comment
               uses: actions/github-script@v7
